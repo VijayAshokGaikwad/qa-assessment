@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -27,5 +28,13 @@ public class GroceryController {
     public ResponseEntity addGroceryItems(@RequestBody List<Grocery> newGroceryItems) {
         groceryService.addGroceryItems(newGroceryItems);
         return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/grocery-items/{itemId}")
+    public ResponseEntity removeGroceryItem(@PathVariable Long itemId) {
+        Optional<Long> deletedItem = groceryService.removeGroceryItem(itemId);
+        return deletedItem.isPresent()
+                ? ResponseEntity.ok(deletedItem.get())
+                : ResponseEntity.notFound().build();
     }
 }

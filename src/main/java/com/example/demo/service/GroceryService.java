@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.model.Grocery;
+import com.example.demo.model.entity.GroceryItem;
+import com.example.demo.model.entity.GroceryItemBuilder;
 import com.example.demo.repository.GroceryRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,13 +20,13 @@ public class GroceryService {
         this.groceryRepository = groceryRepository;
     }
 
-    public List<Grocery> getListOfGroceryItems() {
+    public List<GroceryItem> getListOfGroceryItems() {
         return groceryRepository.findAll();
     }
 
-    public void addGroceryItems(List<Grocery> newGroceryItems) {
+    public void addGroceryItems(List<GroceryItem> newGroceryItemItems) {
         try {
-            groceryRepository.saveAll(newGroceryItems);
+            groceryRepository.saveAll(newGroceryItemItems);
         } catch (Exception exception) {
             logger.error("Error occurred while saving grocery items");
         }
@@ -37,6 +38,22 @@ public class GroceryService {
         if (itemExists) {
             groceryRepository.deleteById(itemId);
             return Optional.of(itemId);
+        } else {
+            return Optional.empty();
+        }
+    }
+
+    public Optional<GroceryItem> updateGroceryItem(GroceryItem groceryUpdateRequest) {
+        Optional<GroceryItem> originalItem = groceryRepository.findById(groceryUpdateRequest.getId());
+
+        if (originalItem.isPresent()) {
+            GroceryItem updatedGroceryItem = GroceryItemBuilder.create()
+                    .withId(groceryUpdateRequest.getId())
+                    .withName(groceryUpdateRequest.getName())
+                    .withPrice(groceryUpdateRequest.getPrice())
+                    .build();
+
+            return Optional.of(groceryRepository.save(updatedGroceryItem));
         } else {
             return Optional.empty();
         }

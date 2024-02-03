@@ -1,6 +1,6 @@
 package com.example.demo.controllers;
 
-import com.example.demo.model.Grocery;
+import com.example.demo.model.entity.GroceryItem;
 import com.example.demo.service.GroceryService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,13 +20,13 @@ public class GroceryController {
 
     @GetMapping("/grocery-items")
     public ResponseEntity getListOfGroceryItems() {
-        List<Grocery> groceryItems = groceryService.getListOfGroceryItems();
-        return ResponseEntity.ok(groceryItems);
+        List<GroceryItem> groceryItemItems = groceryService.getListOfGroceryItems();
+        return ResponseEntity.ok(groceryItemItems);
     }
 
     @PostMapping("/grocery-items")
-    public ResponseEntity addGroceryItems(@RequestBody List<Grocery> newGroceryItems) {
-        groceryService.addGroceryItems(newGroceryItems);
+    public ResponseEntity addGroceryItems(@RequestBody List<GroceryItem> newGroceryItemItems) {
+        groceryService.addGroceryItems(newGroceryItemItems);
         return ResponseEntity.ok().build();
     }
 
@@ -35,6 +35,14 @@ public class GroceryController {
         Optional<Long> deletedItem = groceryService.removeGroceryItem(itemId);
         return deletedItem.isPresent()
                 ? ResponseEntity.ok(deletedItem.get())
+                : ResponseEntity.notFound().build();
+    }
+
+    @PutMapping("/grocery-items")
+    public ResponseEntity updateGroceryItem(@RequestBody GroceryItem groceryUpdateRequest) {
+        Optional<GroceryItem> updateGroceryItem = groceryService.updateGroceryItem(groceryUpdateRequest);
+        return updateGroceryItem.isPresent()
+                ? ResponseEntity.ok(updateGroceryItem.get())
                 : ResponseEntity.notFound().build();
     }
 }

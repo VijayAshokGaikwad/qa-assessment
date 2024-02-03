@@ -3,10 +3,7 @@ package com.example.demo.controllers;
 import com.example.demo.model.Grocery;
 import com.example.demo.service.GroceryService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,7 +24,7 @@ public class GroceryController {
     }
 
     @PostMapping("/grocery-items")
-    public ResponseEntity addGroceryItems(List<Grocery> newGroceryItems) {
+    public ResponseEntity addGroceryItems(@RequestBody List<Grocery> newGroceryItems) {
         groceryService.addGroceryItems(newGroceryItems);
         return ResponseEntity.ok().build();
     }

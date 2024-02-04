@@ -1,4 +1,6 @@
-package com.example.demo.model.entity;
+package com.example.demo.model.builders;
+
+import com.example.demo.model.entity.Grocery;
 
 public class GroceryItemBuilder {
     private Long id;
@@ -33,12 +35,12 @@ public class GroceryItemBuilder {
         return this;
     }
 
-    public GroceryItem build() {
-        GroceryItem groceryItem = new GroceryItem();
-        groceryItem.setId(id);
-        groceryItem.setName(name);
-        groceryItem.setPrice(price);
-        groceryItem.setAvailableQuantity(availableQuantity);
-        return groceryItem;
+    public Grocery build() {
+        Grocery grocery = new Grocery();
+        grocery.setId(id);
+        grocery.setName(name);
+        grocery.setPrice(price);
+        grocery.setAvailableQuantity(availableQuantity);
+        return grocery;
     }
 }

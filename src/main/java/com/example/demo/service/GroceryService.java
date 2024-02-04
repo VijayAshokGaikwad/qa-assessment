@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.model.entity.GroceryItem;
-import com.example.demo.model.entity.GroceryItemBuilder;
+import com.example.demo.model.entity.Grocery;
+import com.example.demo.model.builders.GroceryItemBuilder;
 import com.example.demo.repository.GroceryRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,24 +13,24 @@ import java.util.Optional;
 @Component
 public class GroceryService {
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final GroceryRepository groceryRepository;
 
     public GroceryService(GroceryRepository groceryRepository) {
         this.groceryRepository = groceryRepository;
     }
 
-    public List<GroceryItem> getAllGroceryItems() {
+    public List<Grocery> getAllGroceryItems() {
         return groceryRepository.findAll();
     }
 
-    public List<GroceryItem> getAvailableGroceryItems() {
+    public List<Grocery> getAvailableGroceryItems() {
         return groceryRepository.findAllWhereQuantityIsGreaterThanZero();
     }
 
-    public void addGroceryItems(List<GroceryItem> newGroceryItemItems) {
+    public void addGroceryItems(List<Grocery> newGroceryItems) {
         try {
-            groceryRepository.saveAll(newGroceryItemItems);
+            groceryRepository.saveAll(newGroceryItems);
         } catch (Exception exception) {
             logger.error("Error occurred while saving grocery items");
         }
@@ -47,18 +47,18 @@ public class GroceryService {
         }
     }
 
-    public Optional<GroceryItem> updateGroceryItem(GroceryItem groceryUpdateRequest) {
-        Optional<GroceryItem> originalItem = groceryRepository.findById(groceryUpdateRequest.getId());
+    public Optional<Grocery> updateGroceryItem(Grocery groceryUpdateRequest) {
+        Optional<Grocery> originalItem = groceryRepository.findById(groceryUpdateRequest.getId());
 
         if (originalItem.isPresent()) {
-            GroceryItem updatedGroceryItem = GroceryItemBuilder.create()
+            Grocery updatedGrocery = GroceryItemBuilder.create()
                     .withId(groceryUpdateRequest.getId())
                     .withName(groceryUpdateRequest.getName())
                     .withPrice(groceryUpdateRequest.getPrice())
                     .withQuantity(groceryUpdateRequest.getAvailableQuantity())
                     .build();
 
-            return Optional.of(groceryRepository.save(updatedGroceryItem));
+            return Optional.of(groceryRepository.save(updatedGrocery));
         } else {
             return Optional.empty();
         }

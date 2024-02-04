@@ -1,6 +1,6 @@
 package com.example.demo.controllers;
 
-import com.example.demo.model.entity.GroceryItem;
+import com.example.demo.model.entity.Grocery;
 import com.example.demo.service.GroceryService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,19 +20,19 @@ public class GroceryController {
 
     @GetMapping("/grocery-items")
     public ResponseEntity getAllGroceryItems() {
-        List<GroceryItem> allGroceryItems = groceryService.getAllGroceryItems();
-        return ResponseEntity.ok(allGroceryItems);
+        List<Grocery> allGroceries = groceryService.getAllGroceryItems();
+        return ResponseEntity.ok(allGroceries);
     }
 
     @GetMapping("/available/grocery-items")
     public ResponseEntity getAvailableGroceryItems() {
-        List<GroceryItem> availableGroceryItems = groceryService.getAvailableGroceryItems();
-        return ResponseEntity.ok(availableGroceryItems);
+        List<Grocery> availableGroceries = groceryService.getAvailableGroceryItems();
+        return ResponseEntity.ok(availableGroceries);
     }
 
     @PostMapping("/grocery-items")
-    public ResponseEntity addGroceryItems(@RequestBody List<GroceryItem> newGroceryItemItems) {
-        groceryService.addGroceryItems(newGroceryItemItems);
+    public ResponseEntity addGroceryItems(@RequestBody List<Grocery> newGroceryItems) {
+        groceryService.addGroceryItems(newGroceryItems);
         return ResponseEntity.ok().build();
     }
 
@@ -45,8 +45,8 @@ public class GroceryController {
     }
 
     @PutMapping("/grocery-items")
-    public ResponseEntity updateGroceryItem(@RequestBody GroceryItem groceryUpdateRequest) {
-        Optional<GroceryItem> updateGroceryItem = groceryService.updateGroceryItem(groceryUpdateRequest);
+    public ResponseEntity updateGroceryItem(@RequestBody Grocery groceryUpdateRequest) {
+        Optional<Grocery> updateGroceryItem = groceryService.updateGroceryItem(groceryUpdateRequest);
         return updateGroceryItem.isPresent()
                 ? ResponseEntity.ok(updateGroceryItem.get())
                 : ResponseEntity.notFound().build();

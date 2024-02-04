@@ -20,8 +20,12 @@ public class GroceryService {
         this.groceryRepository = groceryRepository;
     }
 
-    public List<GroceryItem> getListOfGroceryItems() {
+    public List<GroceryItem> getAllGroceryItems() {
         return groceryRepository.findAll();
+    }
+
+    public List<GroceryItem> getAvailableGroceryItems() {
+        return groceryRepository.findAllWhereQuantityIsGreaterThanZero();
     }
 
     public void addGroceryItems(List<GroceryItem> newGroceryItemItems) {
@@ -51,6 +55,7 @@ public class GroceryService {
                     .withId(groceryUpdateRequest.getId())
                     .withName(groceryUpdateRequest.getName())
                     .withPrice(groceryUpdateRequest.getPrice())
+                    .withQuantity(groceryUpdateRequest.getAvailableQuantity())
                     .build();
 
             return Optional.of(groceryRepository.save(updatedGroceryItem));

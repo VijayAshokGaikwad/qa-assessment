@@ -14,6 +14,7 @@ public class GroceryItem {
 
     private String name;
     private Float price;
+    private Integer availableQuantity;
 
     public Long getId() { return id; }
 
@@ -23,6 +24,10 @@ public class GroceryItem {
 
     public Float getPrice() {
         return price;
+    }
+
+    public Integer getAvailableQuantity() {
+        return availableQuantity;
     }
 
     public void setId(Long id) { this.id = id; }
@@ -35,4 +40,7 @@ public class GroceryItem {
         this.price = price;
     }
 
+    public void setAvailableQuantity(Integer availableQuantity) {
+        this.availableQuantity = availableQuantity;
+    }
 }

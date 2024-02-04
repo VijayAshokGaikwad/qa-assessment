@@ -19,9 +19,15 @@ public class GroceryController {
     }
 
     @GetMapping("/grocery-items")
-    public ResponseEntity getListOfGroceryItems() {
-        List<GroceryItem> groceryItemItems = groceryService.getListOfGroceryItems();
-        return ResponseEntity.ok(groceryItemItems);
+    public ResponseEntity getAllGroceryItems() {
+        List<GroceryItem> allGroceryItems = groceryService.getAllGroceryItems();
+        return ResponseEntity.ok(allGroceryItems);
+    }
+
+    @GetMapping("/available/grocery-items")
+    public ResponseEntity getAvailableGroceryItems() {
+        List<GroceryItem> availableGroceryItems = groceryService.getAvailableGroceryItems();
+        return ResponseEntity.ok(availableGroceryItems);
     }
 
     @PostMapping("/grocery-items")

@@ -4,6 +4,7 @@ public class GroceryItemBuilder {
     private Long id;
     private String name;
     private Float price;
+    private Integer availableQuantity;
 
     private GroceryItemBuilder() {
     }
@@ -27,11 +28,17 @@ public class GroceryItemBuilder {
         return this;
     }
 
+    public GroceryItemBuilder withQuantity(Integer availableQuantity) {
+        this.availableQuantity = availableQuantity;
+        return this;
+    }
+
     public GroceryItem build() {
         GroceryItem groceryItem = new GroceryItem();
         groceryItem.setId(id);
         groceryItem.setName(name);
         groceryItem.setPrice(price);
+        groceryItem.setAvailableQuantity(availableQuantity);
         return groceryItem;
     }
 }

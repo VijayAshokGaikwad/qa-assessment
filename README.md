@@ -10,7 +10,7 @@ installed.
 This project works with Postgres database. To run locally, database named 'postgres' need to be created in local postgres. 
 
 
-### Assignment Tasks Done / Not done  
+## Assignment Tasks Done / Not done  
 #### Add new grocery items to the system                           -- Done
 #### View existing grocery items                                   -- Done
 #### Remove grocery items from the system                          -- Done
@@ -24,8 +24,15 @@ This project works with Postgres database. To run locally, database named 'postg
 #### Containerize the application using Docker for ease of deployment and scaling.     -- Done
 #### Use any relational database of your choice.                                       -- Done
 
-
-
+## Compile and build
+```text
+./gradlew clean build
+```
+## Run
+```text
+./gradlew bootrun 
+```
+Please note that postgres connection is required to run it on local.
 
 ## Endpoints supported
 

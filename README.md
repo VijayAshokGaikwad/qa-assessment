@@ -11,19 +11,19 @@ This project works with Postgres database. To run locally, database named 'postg
 
 
 ### Assignment Tasks Done / Not done  
-# Add new grocery items to the system                           -- Done
-# View existing grocery items                                   -- Done
-# Remove grocery items from the system                          -- Done
-# Update details (e.g., name, price) of existing grocery items  -- Done
-# Manage inventory levels of grocery items                      -- Done
-# View the list of available grocery items                      -- Done
-# Ability to book multiple grocery items in a single order      -- Done
+#### Add new grocery items to the system                           -- Done
+#### View existing grocery items                                   -- Done
+#### Remove grocery items from the system                          -- Done
+#### Update details (e.g., name, price) of existing grocery items  -- Done
+#### Manage inventory levels of grocery items                      -- Done
+#### View the list of available grocery items                      -- Done
+#### Ability to book multiple grocery items in a single order      -- Done
+#### Role based APIs for USER and Admin                            -- NOT Done
 
-# Advanced Challenge:
-# Containerize the application using Docker for ease of deployment and scaling.     -- Done
-# Use any relational database of your choice.                                       -- Done
+### Advanced Challenge:
+#### Containerize the application using Docker for ease of deployment and scaling.     -- Done
+#### Use any relational database of your choice.                                       -- Done
 
-# Role based APIs for USER and Admin                            -- NOT Done
 
 
 

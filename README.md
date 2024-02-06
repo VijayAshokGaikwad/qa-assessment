@@ -7,6 +7,28 @@ The project makes use of Gradle and uses
 the [Gradle wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html), which means you don't need Gradle
 installed.
 
+This project works with Postgres database. To run locally, database named 'postgres' need to be created in local postgres. 
+
+
+### Assignment Tasks Done / Not done  
+# Add new grocery items to the system                           -- Done
+# View existing grocery items                                   -- Done
+# Remove grocery items from the system                          -- Done
+# Update details (e.g., name, price) of existing grocery items  -- Done
+# Manage inventory levels of grocery items                      -- Done
+# View the list of available grocery items                      -- Done
+# Ability to book multiple grocery items in a single order      -- Done
+
+# Advanced Challenge:
+# Containerize the application using Docker for ease of deployment and scaling.     -- Done
+# Use any relational database of your choice.                                       -- Done
+
+# Role based APIs for USER and Admin                            -- NOT Done
+
+
+
+## Endpoints supported
+
 ### Get Grocery items
 
 Endpoint
@@ -123,6 +145,27 @@ POST /api/v1/orders
 ### Get all orders list
 ```text
 GET /api/v1/orders
+```
+
+###
+
+
+### Place new order 
+```text
+POST /api/v1/orders
+```
+
+```json
+[
+  {
+    "groceryId" : 1,
+    "quantity": 1
+  },
+  {
+    "groceryId": 2,
+    "quantity": 5
+  }
+]
 ```
 
 ###

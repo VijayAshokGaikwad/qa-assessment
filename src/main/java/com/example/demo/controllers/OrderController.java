@@ -3,6 +3,7 @@ package com.example.demo.controllers;
 import com.example.demo.exceptions.GroceryNotAvailableException;
 import com.example.demo.model.entity.ShoppingOrder;
 import com.example.demo.model.request.OrderItemRequest;
+import com.example.demo.model.response.ShoppingOrderResponse;
 import com.example.demo.service.OrderService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +35,7 @@ public class OrderController {
 
     @GetMapping("/orders")
     public ResponseEntity getAllOrders() {
-        List<ShoppingOrder> allShoppingOrders = orderService.getAllOrders();
+        List<ShoppingOrderResponse> allShoppingOrders = orderService.getAllOrders();
         return ResponseEntity.ok(allShoppingOrders);
     }
 }

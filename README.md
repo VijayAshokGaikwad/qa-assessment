@@ -149,25 +149,3 @@ GET /api/v1/orders
 
 ###
 
-
-### Place new order 
-```text
-POST /api/v1/orders
-```
-
-```json
-[
-  {
-    "groceryId" : 1,
-    "quantity": 1
-  },
-  {
-    "groceryId": 2,
-    "quantity": 5
-  }
-]
-```
-
-###
-
-

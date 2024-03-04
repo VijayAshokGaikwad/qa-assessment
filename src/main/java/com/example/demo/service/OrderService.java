@@ -13,6 +13,7 @@ import com.example.demo.repository.OrderItemRepository;
 import com.example.demo.repository.OrderRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,10 +26,12 @@ import java.util.stream.Collectors;
 public class OrderService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     private final OrderRepository orderRepository;
     private final OrderItemRepository orderItemRepository;
     private final GroceryRepository groceryRepository;
 
+    @Autowired
     public OrderService(OrderRepository orderRepository, OrderItemRepository orderItemRepository, GroceryRepository groceryRepository) {
         this.orderRepository = orderRepository;
         this.orderItemRepository = orderItemRepository;
@@ -51,6 +54,8 @@ public class OrderService {
         }
 
         orderItemRepository.saveAll(orderItems);
+
+        // Todo - decrease the available quantity of respective grocery
 
         logger.info("Order placed successfully. Reference id" + order.getId());
         return order.getId();

@@ -2,6 +2,7 @@ package com.example.demo.controllers;
 
 import com.example.demo.model.entity.Grocery;
 import com.example.demo.service.GroceryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,7 @@ public class GroceryController {
 
     private final GroceryService groceryService;
 
+    @Autowired
     public GroceryController(GroceryService groceryService) {
         this.groceryService = groceryService;
     }
@@ -36,8 +38,8 @@ public class GroceryController {
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/grocery-items/{itemId}")
-    public ResponseEntity removeGroceryItem(@PathVariable Long itemId) {
+    @DeleteMapping("/grocery-items/{item-id}")
+    public ResponseEntity removeGroceryItem(@PathVariable(name="item-id") Long itemId) {
         Optional<Long> deletedItem = groceryService.removeGroceryItem(itemId);
         return deletedItem.isPresent()
                 ? ResponseEntity.ok(deletedItem.get())

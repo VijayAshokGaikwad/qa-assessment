@@ -10,6 +10,5 @@ import java.util.List;
 @Repository
 public interface GroceryRepository extends JpaRepository<Grocery, Long> {
 
-    @Query("select g from Grocery g where g.availableQuantity > 0")
-    List<Grocery> findAllWhereQuantityIsGreaterThanZero();
+    List<Grocery> findAllByAvailableQuantityGreaterThan(int quantity);
 }

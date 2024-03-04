@@ -6,7 +6,6 @@ import com.example.demo.repository.GroceryRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,7 +28,8 @@ public class GroceryService {
     }
 
     public List<Grocery> getAvailableGroceryItems() {
-        return groceryRepository.findAllWhereQuantityIsGreaterThanZero();
+        int minimumQuantity = 0;
+        return groceryRepository.findAllByAvailableQuantityGreaterThan(minimumQuantity);
     }
 
     public void addGroceryItems(List<Grocery> newGroceryItems) {
